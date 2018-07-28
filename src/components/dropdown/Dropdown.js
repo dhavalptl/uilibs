@@ -2,45 +2,44 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import DropdownInput from './DropdownInput';
 import Dropdownlist from './DropdownList';
-import './Dropdown.css';
+
 class Dropdown extends PureComponent {
   state = {
     isOpen: false,
-    selectedItem: this.props.value,
+    selectedOption: this.props.value,
     options: this.props.options || []
   };
   toggleList = () => {
     this.setState(prevState => ({ isOpen: !prevState.isOpen }));
   };
-  onItemSelect = item => {
-    this.setState(prevState => ({ isOpen: false, selectedItem: item }));
-    this.props.onChange(item);
+  onOptionSelect = option => {
+    this.setState(prevState => ({ isOpen: false, selectedOption: option }));
+    this.props.onChange(option);
   };
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(nextProps, prevState);
     if (!nextProps.value) {
       return {
-        selectedItem: {
+        selectedOption: {
           id: -1,
-          label: 'Select Option'
+          label: 'Select Option',
+          value: ''
         }
       };
     }
-    if (nextProps.value.id !== prevState.selectedItem.id) {
+    if (nextProps.value.id !== prevState.selectedOption.id) {
       return {
-        selectedItem: nextProps.value
+        selectedOption: nextProps.value
       };
     }
-    console.log('No Change');
     return null;
   }
   render() {
-    const { isOpen, selectedItem, options } = this.state;
+    const { isOpen, selectedOption, options } = this.state;
     const { style } = this.props;
     return (
       <div className="dropdown">
         <DropdownInput
-          selectedItem={selectedItem}
+          selectedOption={selectedOption}
           toggleList={this.toggleList}
           style={style}
           isOpen={isOpen}
@@ -49,7 +48,7 @@ class Dropdown extends PureComponent {
           <Dropdownlist
             options={options}
             style={style}
-            onItemSelect={this.onItemSelect}
+            onOptionSelect={this.onOptionSelect}
           />
         )}
       </div>
@@ -57,6 +56,15 @@ class Dropdown extends PureComponent {
   }
 }
 
-Dropdown.propTypes = {};
+Dropdown.propTypes = {
+  options: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
+  style: PropTypes.shape({}),
+  value: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired
+  })
+};
 
 export default Dropdown;
