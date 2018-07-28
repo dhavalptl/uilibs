@@ -1,0 +1,12 @@
+.dropdownList {
+  max-height: 200px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  z-index: 999;
+  position: relative;
+}

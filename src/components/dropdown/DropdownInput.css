@@ -1,0 +1,28 @@
+.dropdownInput {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid lightgray;
+  align-items: center;
+  height: 30px;
+}
+
+.dropdownTitle {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  padding-left: 7px;
+}
+
+.dropdownTitle input {
+  flex: 1;
+  height: 28px;
+  border: 0;
+  padding-left: 7px;
+  font-size: 1em;
+}
+
+.dropdownToggle {
+  width: 25px;
+  border-left: 1px solid lightgray;
+  text-align: center;
+}
