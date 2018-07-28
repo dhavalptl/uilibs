@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 
 class DropdownInput extends Component {
   render() {
-    const { selectedOption, style, toggleList, isOpen } = this.props;
+    const { selectedOption, style, onToggle, isOpen } = this.props;
     return (
       <div style={style} className="dropdownInput">
-        <div className="dropdownTitle" onClick={() => toggleList()}>
+        <div className="dropdownTitle" onClick={() => onToggle()}>
           {selectedOption.label}
         </div>
-        <div className="dropdownToggle" onClick={() => toggleList()}>
+        <div className="dropdownToggle" onClick={() => onToggle()}>
           {isOpen ? (
             <FontAwesomeIcon icon="angle-up" />
           ) : (
@@ -24,7 +24,7 @@ class DropdownInput extends Component {
 
 DropdownInput.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  toggleList: PropTypes.func.isRequired,
+  onToggle: PropTypes.func.isRequired,
   style: PropTypes.shape({}),
   selectedOption: PropTypes.shape({
     id: PropTypes.number.isRequired,

@@ -9,7 +9,7 @@ class Dropdown extends PureComponent {
     selectedOption: this.props.value,
     options: this.props.options || []
   };
-  toggleList = () => {
+  onToggle = () => {
     this.setState(prevState => ({ isOpen: !prevState.isOpen }));
   };
   onOptionSelect = option => {
@@ -40,7 +40,7 @@ class Dropdown extends PureComponent {
       <div className="dropdown">
         <DropdownInput
           selectedOption={selectedOption}
-          toggleList={this.toggleList}
+          onToggle={this.onToggle}
           style={style}
           isOpen={isOpen}
         />
