@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
 import Dropdown from './components/dropdown/Dropdown';
+import FileGenerator from './components/filegenerator/FileGenerator';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAngleDown,
+  faAngleUp,
+  faFileExcel
+} from '@fortawesome/free-solid-svg-icons';
 const style = {
   width: '200px'
 };
-library.add(faAngleDown, faAngleUp);
+library.add(faAngleDown, faAngleUp, faFileExcel);
 const list = [
   {
     id: 1,
@@ -51,11 +56,21 @@ class App extends Component {
           onChange={this.onChange}
           value={this.state.selectedOption}
         />
-        <div>
-          <button type="button" onClick={this.onReset}>
-            Reset
-          </button>
-        </div>
+        <FileGenerator
+          data={list}
+          format={'xlsx'}
+          fileName={'sample'}
+          buttonLabel={'Export Data'}
+          style={{
+            height: 40,
+            width: 200,
+            fontSize: '.8em',
+            backgroundColor: 'white',
+            border: '1px solid lightgrey',
+            cursor: 'pointer',
+            textAlign: 'center'
+          }}
+        />
       </div>
     );
   }
